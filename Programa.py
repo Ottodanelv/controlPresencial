@@ -126,9 +126,16 @@ if __name__ == '__main__':
                     mes = re.search(fechaLog_re, ultimaLinea).group(2)
                     anio = re.search(fechaLog_re, ultimaLinea).group(1)
                     dLog = datetime (int(anio) ,int(mes) ,int(dia))
-                    dInput = datetime(int(fechaInput[2]) ,int(fechaInput[1]) ,int(fechaInput[0])) 
+                    dInput = datetime(int(fechaInput[2]) ,int(fechaInput[1]) ,int(fechaInput[0]))  
+                    #Verificacion del dia de la semana
+                    lista = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo']
+                    tt = dLog.timetuple()
+                    dia_semana = tt[6] 
                     if (dInput >= dLog):           
-                        break
+                        if (lista[dia_semana]=='Sabado' or lista[dia_semana]=='Domingo'):
+                            print("No puede ser sabado o domingo.\nIntentelo nuevamente..")
+                        else:
+                            break
                     else:
                         print("No puede ser anterior a la ultima guardada.\nIntentelo nuevamente..")
                 else:
